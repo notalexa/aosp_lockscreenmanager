@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="generated"/>
+	<classpathentry kind="src" path="aosp/java"/>
+	<classpathentry kind="lib" path="common-libs/framework_intermediates/classes.jar"/>
+	<classpathentry kind="lib" path="sdk-libs/androidx/androidx.appcompat_appcompat/android_common/turbine-combined/androidx.appcompat_appcompat.jar"/>
+	<classpathentry kind="lib" path="sdk-libs/extras/material-design-x/com.google.android.material_material/android_common/turbine-combined/com.google.android.material_material.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

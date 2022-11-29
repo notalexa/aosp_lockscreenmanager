@@ -1,0 +1,28 @@
+
+prebuilt_etc {
+	name:"not.alexa.android.trust.xml",
+	sub_dir:"permissions",
+	src:"permissions/not.alexa.android.trust.xml"
+}
+
+android_app {
+	name:"UnlockTrustAgent",
+	srcs:[
+		"java/**/*.java",
+		"aidl/**/*.aidl"
+	],
+	static_libs: [
+        "androidx.appcompat_appcompat",
+        "com.google.android.material_material"
+	],
+	optimize: {
+		enabled:false,
+	},
+	privileged:true,
+	certificate:"platform",
+	platform_apis:true,
+	required:[
+	    "not.alexa.android.trust.xml",
+	    "feature.accept_escrow_tokens"
+	],
+}

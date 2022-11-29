@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Lock Screen Manager</string>
+    <string name="title_lock_screen_chooser">Choose Lock Screens</string>
+    <string name="grant_permission_label">Grant Permission</string>
+    <string name="grant_permission_descr">Permission needed to grant trust</string>
+    <string name="advancedSettings">Advanced</string>
+	<string name="titleGrants">Granted by Manager</string>
+	<string name="grantSecret">Secret</string>
+    <string name="grantBiometric">Fingerprint</string>
+    <string name="grantPossession">Posession</string>
+    <string name="grantLocation">Location</string>
+    <string name="titleGeneral">General Settings</string>
+    <string name="allowEscrow">Allow boot login without PIN</string>
+</resources>

@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="not.alexa.challenge.fortune.not.alexa.challenge.fortune.MainActivity">
+    <item
+        android:id="@+id/itemGrants"
+        android:icon="@drawable/ic_advanced_settings"
+        android:orderInCategory="200"
+        android:title="@string/advancedSettings"
+        app:showAsAction="ifRoom" />
+</menu>

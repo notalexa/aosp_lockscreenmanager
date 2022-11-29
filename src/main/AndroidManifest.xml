@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="not.alexa.android.trust"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <permission
+        android:name="not.alexa.android.trust.GRANT_PERMISSION"
+        android:description="@string/grant_permission_descr"
+        android:label="@string/grant_permission_label"
+        android:protectionLevel="normal" />
+
+    <uses-permission android:name="android.permission.CONTROL_KEYGUARD" />
+    <uses-permission android:name="android.permission.PROVIDE_TRUST_AGENT" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.MANAGE_USERS" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:name=".UnlockApp"
+        android:directBootAware="true"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_app_logo"
+        android:label="@string/app_name">
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_lock_screen_chooser"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:logo="@drawable/chooser_logo"></activity>
+        <activity
+            android:name=".settings.AdvancedSettingsActivity"
+			android:parentActivityName=".settings.SettingsActivity"
+            android:label="@string/advancedSettings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:logo="@drawable/ic_advanced_settings"></activity>
+        <service
+            android:name=".UnlockTrustAgent"
+            android:exported="true"
+            android:isolatedProcess="false"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_TRUST_AGENT">
+            <intent-filter>
+                <action android:name="android.service.trust.TrustAgentService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.trust.trustagent"
+                android:resource="@xml/unlock_trust_agent" />
+        </service>
+        <service
+            android:name=".GrantServiceImpl"
+            android:isolatedProcess="false"
+            android:permission="not.alexa.android.trust.TRUST_PERMISSION">
+            <intent-filter>
+                <action android:name="not.alexa.android.trust.GRANT" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Sperrbildschirmverwaltung</string>
+    <string name="title_lock_screen_chooser">Wähle Deine Rätsel</string>
+    <string name="grant_permission_label">Genehmigungserlaubnis</string>
+    <string name="grant_permission_descr">Erlaubnis um Genehmigungen zu erteilen</string>
+    <string name="advancedSettings">Erweitert</string>
+	<string name="titleGrants">Erteilte Genehmigungen</string>
+	<string name="grantSecret">Geheimnis</string>
+    <string name="grantBiometric">Fingerabdruck</string>
+    <string name="grantPossession">Besitz</string>
+    <string name="grantLocation">Ort</string>
+    <string name="titleGeneral">Allgemeine Einstellungen</string>
+    <string name="allowEscrow">Erlaube den ersten Login ohne PIN</string>
+</resources>

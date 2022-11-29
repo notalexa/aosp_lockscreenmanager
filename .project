@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>aosp_lockscreenmanager</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>aosp</name>
+			<type>2</type>
+			<location>AOSP_HOME/packages/apps/UnlockTrustAgent</location>
+		</link>
+		<link>
+			<name>common-libs</name>
+			<type>2</type>
+			<locationURI>AOSP_HOME/out/target/common/obj/JAVA_LIBRARIES</locationURI>
+		</link>
+		<link>
+			<name>sdk-libs</name>
+			<type>2</type>
+			<locationURI>AOSP_HOME/out/soong/.intermediates/prebuilts/sdk/current</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>AOSP_HOME</name>
+			<value>file:/home/notalexa/android</value>
+		</variable>
+	</variableList>
+</projectDescription>

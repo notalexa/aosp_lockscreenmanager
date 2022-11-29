@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorBackgroundLight">#5fffff</color>
+    <color name="colorBackgroundMedium">#4FE6D6</color>
+    <color name="colorBackgroundDark">#4FE6D6</color>
+    <color name="colorForegroundLight">#fcea2b</color>
+    <color name="colorForegroundMedium">#fcea2b</color>
+    <color name="colorForegroundDark">#f1b31c</color>
+    <color name="colorForegroundDarkest">#8C8103</color>
+    <color name="iconBackgroundLight">#5fffff</color>
+    <color name="iconBackgroundDark">#4FE6D6</color>
+    <color name="iconForegroundLight">#fcea2b</color>
+    <color name="iconForegroundDark">#f1b31c</color>
+</resources>
