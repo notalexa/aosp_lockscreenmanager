@@ -49,11 +49,10 @@ public class UnlockTrustAgent extends TrustAgentService {
     protected void onCallbackSet() {
     	if(app.getPreferences().getBoolean("allow.escrowtoken",false)) {
 	        int uid=ActivityManager.getCurrentUser();
-	        String token=app.getPreferences().getString("escrow."+uid+".token",null);
-	        if(token!=null) {
-	            Slog.i(TAG,"Escrow token present for user "+uid+". Unlock user and grant trust");
-	            long tokenHandle=app.getPreferences().getLong("escrow."+uid+".handle",-1);
-	            unlockUserWithToken(tokenHandle,token.getBytes(), UserHandle.of(uid));
+            long tokenHandle=app.getPreferences().getLong("escrow."+uid+".handle",0);
+            if(tokenHandle!=0) {
+	            UserHandle handle=UserHandle.of(uid);
+	            isEscrowTokenActive(tokenHandle, handle);
 	        } else {
 	        	initiateEscrowToken(uid);
 	        }
@@ -66,7 +65,7 @@ public class UnlockTrustAgent extends TrustAgentService {
         String s=new String(token);
         String tok=app.getPreferences().getString("escrow."+user.getIdentifier()+".pending",null);
         if(s.equals(tok)) {
-            Slog.i(TAG,"Pending escrow token added for user "+user.getIdentifier());
+            Slog.i(TAG,"Pending escrow token added for user "+user.getIdentifier()+": handle=0x"+Long.toHexString(handle));
             app.getPreferences().edit().putString("escrow."+user.getIdentifier()+".token",s).putLong("escrow."+user.getIdentifier()+".handle",handle).remove("escrow."+user.getIdentifier()+".pending").commit();
         } else {
             Slog.w(TAG,"Pending token mismatch: Expected "+tok+", got "+s+". Ignore");
@@ -76,6 +75,16 @@ public class UnlockTrustAgent extends TrustAgentService {
 
     @Override
     public void onEscrowTokenStateReceived(long handle, int tokenState) {
+    	int uid=ActivityManager.getCurrentUser();
+        String token=app.getPreferences().getString("escrow."+uid+".token",null);
+    	if(token!=null&&handle!=0&&tokenState==TOKEN_STATE_ACTIVE) {
+            Slog.i(TAG,"Escrow token present for user "+uid+". Unlock user and grant trust");
+    		unlockUserWithToken(handle,token.getBytes(), UserHandle.of(uid));
+    	} else {
+    		// We rebooted but token not active. Reset.
+            Slog.i(TAG,"Escrow token for user "+uid+" not active.");
+    		app.getPreferences().edit().remove("escrow."+uid+".token").remove("escrow."+uid+".handle").putBoolean("allow.escrowtoken", false).commit();
+    	}
         super.onEscrowTokenStateReceived(handle, tokenState);
     }
 
