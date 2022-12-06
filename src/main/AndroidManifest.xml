@@ -12,6 +12,7 @@
         android:protectionLevel="normal" />
 
     <uses-permission android:name="android.permission.CONTROL_KEYGUARD" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.PROVIDE_TRUST_AGENT" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.MANAGE_USERS" />

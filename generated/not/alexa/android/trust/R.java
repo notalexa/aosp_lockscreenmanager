@@ -6158,6 +6158,7 @@ public final class R {
     public static final int menu_advanced_settings=0x7f0c0000;
   }
   public static final class string {
+    public static final int confirm_pinless_boot=0;
     public static final int abc_action_bar_home_description=0x7f0d0000;
     public static final int abc_action_bar_up_description=0x7f0d0001;
     public static final int abc_action_menu_overflow_description=0x7f0d0002;

@@ -18,7 +18,7 @@ import not.alexa.android.trust.settings.ChallengeItem;
 import not.alexa.android.trust.settings.ChooseProvider;
 
 public class UnlockApp extends Application implements OnSharedPreferenceChangeListener,ChooseProvider<ChallengeItem> {
-    public static final String TAG = "UnlockTrustAgent-conetxt";
+    public static final String TAG = "UnlockTrustAgent";
 
     private File storeFile;
     private ChallengeStore store=new ChallengeStore();
@@ -102,8 +102,12 @@ public class UnlockApp extends Application implements OnSharedPreferenceChangeLi
 			if(!currentState.getAuth().equals(auth)) {
             	agent.grantTrust(getAuth());
 			}
-		} else if("allow.escrowtoken".equals(key)&&sharedPreferences.getBoolean(key,false)) {
-			agent.initiateEscrowToken(ActivityManager.getCurrentUser());
+		} else if("allow.escrowtoken".equals(key)) {
+			if(sharedPreferences.getBoolean(key,false)) {
+				agent.initiateEscrowToken(ActivityManager.getCurrentUser());
+			} else {
+				agent.deleteEscrowToken(ActivityManager.getCurrentUser());
+			}
 		}
 	}
 	

@@ -4,9 +4,9 @@ The Trust Agent defined in this projects coordinates challenges with the challen
 
 ## Installation
 
-We assume you have the [AOSP Project](https://github.com/notalexa/aosp_extensions#readme) already in place. This implies a working eclipse and a successful build of the AOSP. This repository is downloaded and imported as a project in eclipse.
+We assume you have the [AOSP Extensions](https://github.com/notalexa/aosp_extensions#readme) already in place. This implies a working eclipse and a successful build of the AOSP. This repository is downloaded and imported as a project in eclipse.
 
-Edit the file `.projects` and set the variable `AOSP_HOME` to the correct place. Create the directory `$AOSP_HOME/packages/apps/UnlockTrustAgent` and copy everything everything from `src/main`into `aosp` (which is a link to the directory just created). The project should compile now. To package the app into the various build, uncomment the line containing `UnlockTrustAgent` in `build/make/target/product/mainline_product.mk`.
+Edit the file `.projects` and set the variable `AOSP_HOME` to the correct place. Create the directory `$AOSP_HOME/packages/apps/UnlockTrustAgent` and copy everything from `src/main` into `aosp` (which is a link to the directory just created). The project should compile now. To package the app into the various build, uncomment the line containing `UnlockTrustAgent` in `build/make/target/product/mainline_product.mk`.
 
 All icons are taken or derived from the [OpenMoji Project](https://openmoji.org).
 

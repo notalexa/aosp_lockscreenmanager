@@ -6,6 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.hardware.biometrics.BiometricPrompt;
+import android.hardware.biometrics.BiometricPrompt.AuthenticationResult;
+import android.os.CancellationSignal;
 import android.os.UserHandle;
 import android.service.trust.AuthSet;
 import android.service.trust.TrustAgentService;
@@ -45,6 +48,14 @@ public class UnlockTrustAgent extends TrustAgentService {
             Slog.i(TAG,"Pending escrow token for user "+uid+" found. Do nothing.");
         }
     }
+    
+	public void deleteEscrowToken(int uid) {
+		long handle=app.getPreferences().getLong("escrow."+uid+".handle", 0);
+		app.getPreferences().edit().remove("escrow."+uid+".pending").remove("escrow."+uid+".handle").remove("escrow."+uid+".token").commit();
+		if(handle!=0) {
+			removeEscrowToken(handle,UserHandle.of(uid));
+		}
+	}
 
     protected void onCallbackSet() {
     	if(app.getPreferences().getBoolean("allow.escrowtoken",false)) {
@@ -67,6 +78,23 @@ public class UnlockTrustAgent extends TrustAgentService {
         if(s.equals(tok)) {
             Slog.i(TAG,"Pending escrow token added for user "+user.getIdentifier()+": handle=0x"+Long.toHexString(handle));
             app.getPreferences().edit().putString("escrow."+user.getIdentifier()+".token",s).putLong("escrow."+user.getIdentifier()+".handle",handle).remove("escrow."+user.getIdentifier()+".pending").commit();
+            BiometricPrompt prompt=new BiometricPrompt.Builder(app)
+            		.setDeviceCredentialAllowed(true)
+            		.setTitle(app.getText(R.string.confirm_pinless_boot))
+            		.build();
+            CancellationSignal sigCancel=new CancellationSignal();
+            prompt.authenticate(sigCancel, getMainExecutor(), new BiometricPrompt.AuthenticationCallback() {
+
+				@Override
+				public void onAuthenticationError(int errorCode, CharSequence errString) {
+					app.getPreferences().edit().remove("escrow."+user.getIdentifier()+".token").remove("escrow."+user.getIdentifier()+".handle").putBoolean("allow.escrowtoken",false).commit();
+				}
+
+				@Override
+				public void onAuthenticationSucceeded(AuthenticationResult result) {
+					isEscrowTokenActive(handle,user);
+				}
+			});
         } else {
             Slog.w(TAG,"Pending token mismatch: Expected "+tok+", got "+s+". Ignore");
         }

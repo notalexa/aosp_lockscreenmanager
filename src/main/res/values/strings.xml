@@ -11,4 +11,5 @@
     <string name="grantLocation">Location</string>
     <string name="titleGeneral">General Settings</string>
     <string name="allowEscrow">Allow boot login without PIN</string>
+    <string name="confirm_pinless_boot">Confirm PINless boot</string>
 </resources>

@@ -11,4 +11,5 @@
     <string name="grantLocation">Ort</string>
     <string name="titleGeneral">Allgemeine Einstellungen</string>
     <string name="allowEscrow">Erlaube den ersten Login ohne PIN</string>
+    <string name="confirm_pinless_boot">Bestätigen Sie die Erlaubnis</string>
 </resources>
