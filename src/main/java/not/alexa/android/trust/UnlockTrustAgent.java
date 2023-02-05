@@ -128,8 +128,8 @@ public class UnlockTrustAgent extends TrustAgentService {
 
     @Override
     public void onTrustTimeout() {
-    	// Timeout not yet considered
         super.onTrustTimeout();
+        update();
     }
 
     @Override
